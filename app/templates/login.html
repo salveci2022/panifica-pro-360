@@ -3,442 +3,303 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PANIFICA PRO 360 — Login</title>
+<title>PANIFICA PRO 360</title>
 <style>
-  *, *::before, *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
-  :root {
-    --azul:       #1351B4;
-    --azul-deep:  #0b3a8a;
-    --azul-glow:  #2563eb;
-    --azul-light: #dbeafe;
-    --ciano:      #06b6d4;
-    --branco:     #ffffff;
-    --cinza-bg:   #f1f5f9;
-    --cinza-brd:  #e2e8f0;
-    --cinza-txt:  #64748b;
-    --preto-soft: #1e293b;
-  }
+html, body {
+  height: 100%;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #f0f4f9;
+  overflow: hidden;
+}
 
-  html, body {
-    height: 100%;
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background: var(--cinza-bg);
-    overflow: hidden;
-  }
+.tela { display: flex; height: 100vh; }
 
-  /* ── LAYOUT ── */
-  .tela {
-    display: flex;
-    height: 100vh;
-  }
+/* ══ ESQUERDO ══ */
+.esquerdo {
+  width: 54%;
+  background: linear-gradient(168deg, #061e52 0%, #0f3d9e 45%, #1351B4 75%, #1a6ad4 100%);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 40px 52px 32px;
+  position: relative; overflow: hidden;
+  color: #fff; text-align: center;
+}
 
-  /* ── LADO ESQUERDO ── */
-  .esquerdo {
-    width: 58%;
-    background: linear-gradient(150deg, #0b2d6e 0%, #1351B4 45%, #1a6ad4 100%);
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 64px 72px;
-    overflow: hidden;
-    color: var(--branco);
-  }
+.esquerdo .c1 {
+  position: absolute; top: -160px; right: -160px;
+  width: 420px; height: 420px; border-radius: 50%;
+  background: rgba(255,255,255,.04); pointer-events: none;
+}
+.esquerdo .c2 {
+  position: absolute; bottom: -100px; left: -80px;
+  width: 320px; height: 320px; border-radius: 50%;
+  background: rgba(255,255,255,.03); pointer-events: none;
+}
+.grid-dots {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px);
+  background-size: 26px 26px; pointer-events: none;
+}
 
-  /* padrão geométrico de fundo */
-  .esquerdo::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      radial-gradient(circle at 80% 10%, rgba(6,182,212,.18) 0%, transparent 50%),
-      radial-gradient(circle at 10% 90%, rgba(99,102,241,.15) 0%, transparent 45%);
-    pointer-events: none;
-  }
+.esq-inner {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column;
+  align-items: center; width: 100%;
+}
 
-  /* grade de pontos */
-  .esquerdo::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px);
-    background-size: 28px 28px;
-    pointer-events: none;
-  }
+.logo-escudo {
+  width: 100px; height: 100px; margin-bottom: 14px;
+  filter: drop-shadow(0 0 16px rgba(96,195,248,.45));
+  transition: filter .3s, transform .3s;
+}
+.logo-escudo:hover {
+  filter: drop-shadow(0 0 28px rgba(96,195,248,.7));
+  transform: scale(1.05);
+}
 
-  .esq-inner {
-    position: relative;
-    z-index: 1;
-  }
+.logo-spynet {
+  font-size: 36px; font-weight: 900; letter-spacing: 5px; line-height: 1;
+  background: linear-gradient(90deg, #60a5fa 0%, #06b6d4 45%, #f97316 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; margin-bottom: 5px;
+}
 
-  /* logo developer */
-  .dev-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 52px;
-  }
+.logo-seg {
+  font-size: 10px; letter-spacing: 4px;
+  color: rgba(255,255,255,.38); text-transform: uppercase;
+  font-weight: 500; margin-bottom: 24px;
+}
 
-  .shield {
-    width: 52px;
-    height: 52px;
-    flex-shrink: 0;
-  }
+.sep {
+  width: 52px; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.25), transparent);
+  border-radius: 2px; margin: 0 auto 22px;
+}
 
-  .dev-text {
-    line-height: 1.2;
-  }
+.produto-tag {
+  font-size: 9px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: rgba(255,255,255,.32);
+  margin-bottom: 8px;
+}
 
-  .dev-text .nome {
-    font-size: 22px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    background: linear-gradient(90deg, #60a5fa, #06b6d4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+.produto-nome {
+  font-size: 62px; font-weight: 900;
+  line-height: .92; letter-spacing: -2px; color: #fff;
+  margin-bottom: 12px; white-space: nowrap;
+  text-shadow: 0 4px 32px rgba(0,0,0,.25);
+}
+.produto-nome .pro { color: #5bbcf8; -webkit-text-fill-color: #5bbcf8; }
 
-  .dev-text .sub {
-    font-size: 11px;
-    letter-spacing: 3px;
-    color: #93c5fd;
-    text-transform: uppercase;
-  }
+.produto-slogan {
+  font-size: 13px; color: rgba(255,255,255,.48);
+  line-height: 1.6; margin-bottom: 28px;
+  max-width: 380px; font-style: italic;
+}
 
-  /* divisor */
-  .divider {
-    width: 56px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--ciano), transparent);
-    border-radius: 2px;
-    margin-bottom: 32px;
-  }
+.beneficios {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 9px 24px; width: 100%; max-width: 400px;
+  text-align: left;
+}
 
-  /* produto */
-  .produto-tag {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--ciano);
-    margin-bottom: 14px;
-  }
+.beneficio {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 600;
+  color: rgba(255,255,255,.75);
+  padding: 7px 10px; border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.06);
+  background: rgba(255,255,255,.04);
+  transition: background .2s, color .2s, border-color .2s;
+}
+.beneficio:hover {
+  background: rgba(255,255,255,.09);
+  color: #fff; border-color: rgba(255,255,255,.15);
+}
+.b-icon { font-size: 14px; flex-shrink: 0; }
 
-  .produto-nome {
-    font-size: 48px;
-    font-weight: 900;
-    line-height: 1.05;
-    letter-spacing: -1px;
-    margin-bottom: 16px;
-  }
+.esq-footer {
+  position: absolute; bottom: 18px;
+  font-size: 10px; color: rgba(255,255,255,.18); z-index: 2;
+}
 
-  .produto-nome span {
-    display: block;
-    background: linear-gradient(90deg, #ffffff, #93c5fd);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+/* ══ DIREITO ══ */
+.direito {
+  width: 46%; background: #eef2f8;
+  display: flex; align-items: center;
+  justify-content: center; padding: 36px 44px;
+}
 
-  .produto-desc {
-    font-size: 17px;
-    color: #bfdbfe;
-    margin-bottom: 44px;
-    line-height: 1.5;
-  }
+.card {
+  width: 100%; max-width: 400px;
+  background: #fff; border-radius: 22px;
+  border: 1px solid #dce4ef; overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05), 0 20px 56px rgba(19,81,180,.10);
+}
 
-  /* benefícios */
-  .beneficios {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px 28px;
-  }
+.card-stripe {
+  width: 100%; height: 4px;
+  background: linear-gradient(90deg, #1351B4 0%, #06b6d4 50%, #f97316 100%);
+}
 
-  .beneficio {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 15px;
-    color: #e0f2fe;
-    font-weight: 500;
-  }
+.card-body { padding: 32px 38px 36px; }
 
-  .beneficio .dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--ciano);
-    flex-shrink: 0;
-    box-shadow: 0 0 6px var(--ciano);
-  }
+.card-mini {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 22px; padding-bottom: 18px;
+  border-bottom: 1px solid #eef2f7;
+}
+.mini-svg { width: 30px; height: 30px; }
+.mini-txt .mn { font-size: 12px; font-weight: 800; letter-spacing: 2px; color: #1351B4; }
+.mini-txt .mp { font-size: 10px; color: #94a3b8; letter-spacing: .5px; }
 
-  /* rodapé esquerdo */
-  .esq-footer {
-    position: absolute;
-    bottom: 28px;
-    left: 72px;
-    font-size: 12px;
-    color: #7dd3fc;
-    z-index: 1;
-  }
+.c-eyebrow {
+  font-size: 10px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: #1351B4; margin-bottom: 5px;
+}
+.c-titulo { font-size: 25px; font-weight: 800; color: #0f172a; margin-bottom: 3px; }
+.c-sub { font-size: 13px; color: #64748b; margin-bottom: 26px; }
 
-  /* card flutuante decorativo */
-  .card-deco {
-    position: absolute;
-    right: -30px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 120px;
-    height: 340px;
-    background: rgba(255,255,255,.05);
-    border-radius: 20px;
-    border: 1px solid rgba(255,255,255,.1);
-    backdrop-filter: blur(8px);
-    z-index: 0;
-  }
+.campo { margin-bottom: 15px; }
+.campo label {
+  display: block; font-size: 11px; font-weight: 700;
+  letter-spacing: .4px; color: #334155;
+  margin-bottom: 6px; text-transform: uppercase;
+}
+.campo input {
+  width: 100%; padding: 12px 14px;
+  font-size: 14.5px; color: #0f172a;
+  background: #f8fafc; border: 1.5px solid #dce4ef;
+  border-radius: 11px; outline: none;
+  transition: border-color .18s, box-shadow .18s, background .18s;
+}
+.campo input::placeholder { color: #b0bec5; }
+.campo input:focus {
+  border-color: #1351B4; background: #fff;
+  box-shadow: 0 0 0 3px rgba(19,81,180,.09);
+}
 
-  /* ── LADO DIREITO ── */
-  .direito {
-    width: 42%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 48px;
-    background: var(--cinza-bg);
-  }
+.row-extra {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px; margin-top: 4px;
+}
+.lembrar {
+  display: flex; align-items: center;
+  gap: 7px; font-size: 12.5px; color: #64748b; cursor: pointer;
+}
+.lembrar input { accent-color: #1351B4; }
+.link-esqueci {
+  font-size: 12.5px; font-weight: 700;
+  color: #1351B4; text-decoration: none;
+}
+.link-esqueci:hover { text-decoration: underline; }
 
-  .card {
-    width: 100%;
-    max-width: 420px;
-    background: var(--branco);
-    border-radius: 24px;
-    padding: 48px 44px;
-    box-shadow:
-      0 4px 6px -1px rgba(0,0,0,.07),
-      0 20px 60px -10px rgba(19,81,180,.12);
-    border: 1px solid var(--cinza-brd);
-  }
+.btn {
+  width: 100%; padding: 15px;
+  background: linear-gradient(135deg, #0d3080 0%, #1351B4 40%, #1a6ad4 70%, #0ea5e9 100%);
+  color: #fff; border: none; border-radius: 12px;
+  font-size: 14px; font-weight: 800;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  cursor: pointer; position: relative; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(19,81,180,.35),
+              inset 0 1px 0 rgba(255,255,255,.15);
+  transition: transform .2s, box-shadow .2s, filter .2s;
+}
+.btn::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+.btn::after {
+  content: ''; position: absolute; top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+  transition: left .5s ease;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(19,81,180,.45), inset 0 1px 0 rgba(255,255,255,.15);
+  filter: brightness(1.08);
+}
+.btn:hover::after { left: 140%; }
+.btn:active { transform: scale(.98); }
 
-  .card-header {
-    margin-bottom: 36px;
-  }
+.versao {
+  margin-top: 18px; text-align: center;
+  font-size: 10.5px; color: #b0bec5; letter-spacing: .4px;
+}
 
-  .card-eyebrow {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--azul);
-    margin-bottom: 10px;
-  }
-
-  .card-titulo {
-    font-size: 28px;
-    font-weight: 800;
-    color: var(--preto-soft);
-    margin-bottom: 6px;
-  }
-
-  .card-sub {
-    font-size: 14px;
-    color: var(--cinza-txt);
-  }
-
-  /* campos */
-  .campo {
-    margin-bottom: 18px;
-  }
-
-  .campo label {
-    display: block;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--preto-soft);
-    margin-bottom: 7px;
-    letter-spacing: .3px;
-  }
-
-  .input-wrap {
-    position: relative;
-  }
-
-  .input-wrap input {
-    width: 100%;
-    padding: 13px 16px 13px 44px;
-    border: 1.5px solid var(--cinza-brd);
-    border-radius: 12px;
-    font-size: 15px;
-    color: var(--preto-soft);
-    background: #f8fafc;
-    transition: border-color .2s, box-shadow .2s, background .2s;
-    outline: none;
-  }
-
-  .input-wrap input::placeholder {
-    color: #b0bec5;
-  }
-
-  .input-wrap input:focus {
-    border-color: var(--azul);
-    background: var(--branco);
-    box-shadow: 0 0 0 4px rgba(19,81,180,.1);
-  }
-
-  .input-icon {
-    position: absolute;
-    left: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #94a3b8;
-    pointer-events: none;
-  }
-
-  /* lembrar */
-  .row-opcoes {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 28px;
-    margin-top: -4px;
-  }
-
-  .lembrar {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 13px;
-    color: var(--cinza-txt);
-    cursor: pointer;
-  }
-
-  .lembrar input[type="checkbox"] {
-    accent-color: var(--azul);
-    width: 15px;
-    height: 15px;
-    cursor: pointer;
-  }
-
-  .esqueci {
-    font-size: 13px;
-    color: var(--azul);
-    text-decoration: none;
-    font-weight: 600;
-  }
-
-  .esqueci:hover {
-    text-decoration: underline;
-  }
-
-  /* botão */
-  .btn {
-    width: 100%;
-    padding: 15px;
-    background: linear-gradient(135deg, var(--azul) 0%, var(--azul-glow) 100%);
-    color: var(--branco);
-    border: none;
-    border-radius: 12px;
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: .8px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: transform .2s, box-shadow .2s, filter .2s;
-    box-shadow: 0 6px 20px rgba(19,81,180,.35);
-  }
-
-  .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 28px rgba(19,81,180,.45);
-    filter: brightness(1.06);
-  }
-
-  .btn:active {
-    transform: translateY(0);
-  }
-
-  /* versão */
-  .versao {
-    margin-top: 28px;
-    text-align: center;
-    font-size: 12px;
-    color: #b0bec5;
-    letter-spacing: .5px;
-  }
-
-  /* ── RESPONSIVO ── */
-  @media (max-width: 900px) {
-    html, body { overflow: auto; }
-    .tela { flex-direction: column; height: auto; }
-    .esquerdo { width: 100%; padding: 48px 32px 56px; }
-    .card-deco { display: none; }
-    .beneficios { grid-template-columns: 1fr; }
-    .produto-nome { font-size: 36px; }
-    .direito { width: 100%; padding: 32px 24px 48px; }
-    .card { padding: 36px 28px; }
-    .esq-footer { left: 32px; }
-  }
+@media (max-width: 860px) {
+  html, body { overflow: auto; }
+  .tela { flex-direction: column; height: auto; }
+  .esquerdo { width: 100%; padding: 44px 24px 52px; }
+  .produto-nome { font-size: 40px; letter-spacing: -1px; }
+  .beneficios { grid-template-columns: 1fr; gap: 8px; }
+  .direito { width: 100%; padding: 28px 20px 48px; }
+  .card-body { padding: 28px 28px 32px; }
+}
+@media (max-width: 480px) {
+  .logo-spynet { font-size: 28px; }
+  .produto-nome { font-size: 30px; }
+  .logo-escudo { width: 76px; height: 76px; }
+}
 </style>
 </head>
 <body>
-
 <div class="tela">
 
-  <!-- ════ LADO ESQUERDO ════ -->
+  <!-- ESQUERDO -->
   <div class="esquerdo">
-    <div class="card-deco"></div>
+    <div class="c1"></div>
+    <div class="c2"></div>
+    <div class="grid-dots"></div>
 
     <div class="esq-inner">
 
-      <!-- Logo SPYNET (SVG inline reproduzindo o escudo + gradiente da identidade) -->
-      <div class="dev-badge">
-        <svg class="shield" viewBox="0 0 52 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="sg" x1="0" y1="0" x2="52" y2="60" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#38bdf8"/>
-              <stop offset="50%" stop-color="#3b82f6"/>
-              <stop offset="100%" stop-color="#f97316"/>
-            </linearGradient>
-          </defs>
-          <path d="M26 2 L48 12 L48 32 C48 44 36 54 26 58 C16 54 4 44 4 32 L4 12 Z"
-                stroke="url(#sg)" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
-          <circle cx="26" cy="30" r="11" stroke="url(#sg)" stroke-width="2" fill="none"/>
-          <text x="26" y="35" text-anchor="middle"
-                font-family="Segoe UI, sans-serif" font-weight="800" font-size="10"
-                fill="url(#sg)">SN</text>
-        </svg>
-        <div class="dev-text">
-          <div class="nome">SPYNET</div>
-          <div class="sub">Segurança Inteligente</div>
-        </div>
-      </div>
+      <svg class="logo-escudo" viewBox="0 0 110 124" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gs" x1="0" y1="0" x2="110" y2="124" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stop-color="#38bdf8"/>
+            <stop offset="38%"  stop-color="#3b82f6"/>
+            <stop offset="78%"  stop-color="#f97316"/>
+            <stop offset="100%" stop-color="#ea580c"/>
+          </linearGradient>
+          <linearGradient id="gsn" x1="0" y1="0" x2="110" y2="124" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stop-color="#93c5fd"/>
+            <stop offset="50%"  stop-color="#60a5fa"/>
+            <stop offset="100%" stop-color="#fb923c"/>
+          </linearGradient>
+        </defs>
+        <path d="M55 5 L103 22 L103 63 C103 88 82 107 55 119 C28 107 7 88 7 63 L7 22 Z"
+              stroke="url(#gs)" stroke-width="3.5"
+              fill="rgba(255,255,255,0.06)" stroke-linejoin="round"/>
+        <circle cx="55" cy="66" r="26" stroke="url(#gs)" stroke-width="3" fill="none"/>
+        <text x="55" y="75" text-anchor="middle"
+              font-family="Segoe UI, Arial, sans-serif"
+              font-weight="900" font-size="22"
+              fill="url(#gsn)" letter-spacing="1">SN</text>
+      </svg>
 
-      <div class="divider"></div>
+      <div class="logo-spynet">SPYNET</div>
+      <div class="logo-seg">Segurança Inteligente</div>
 
-      <div class="produto-tag">Plataforma SaaS · Versão 1.0</div>
+      <div class="sep"></div>
 
-      <div class="produto-nome">
-        <span>PANIFICA</span>
-        <span>PRO 360</span>
-      </div>
-
-      <div class="produto-desc">
-        Plataforma Inteligente de Gestão<br>para Padarias e Confeitarias
+      <div class="produto-tag">Plataforma SaaS &nbsp;·&nbsp; Versão 1.0</div>
+      <div class="produto-nome">PANIFICA<span class="pro">PRO</span> 360</div>
+      <div class="produto-slogan">
+        "Transformando a gestão de padarias através<br>da tecnologia e inteligência financeira."
       </div>
 
       <div class="beneficios">
-        <div class="beneficio"><span class="dot"></span>Controle Financeiro</div>
-        <div class="beneficio"><span class="dot"></span>Gestão de Estoque</div>
-        <div class="beneficio"><span class="dot"></span>Produção Automatizada</div>
-        <div class="beneficio"><span class="dot"></span>Controle de Vendas</div>
-        <div class="beneficio"><span class="dot"></span>Relatórios Gerenciais</div>
-        <div class="beneficio"><span class="dot"></span>IA Financeira</div>
+        <div class="beneficio"><span class="b-icon">💰</span>Controle Financeiro</div>
+        <div class="beneficio"><span class="b-icon">📦</span>Gestão de Estoque</div>
+        <div class="beneficio"><span class="b-icon">🏭</span>Produção Automatizada</div>
+        <div class="beneficio"><span class="b-icon">🛒</span>Controle de Vendas</div>
+        <div class="beneficio"><span class="b-icon">📊</span>Relatórios Gerenciais</div>
+        <div class="beneficio"><span class="b-icon">🤖</span>IA Financeira</div>
       </div>
 
     </div>
@@ -448,63 +309,67 @@
     </div>
   </div>
 
-  <!-- ════ LADO DIREITO ════ -->
+  <!-- DIREITO -->
   <div class="direito">
     <div class="card">
 
-      <div class="card-header">
-        <div class="card-eyebrow">Acesso ao sistema</div>
-        <div class="card-titulo">Bem-vindo</div>
-        <div class="card-sub">Acesse sua conta para continuar</div>
-      </div>
+      <div class="card-stripe"></div>
 
-      <form action="/dashboard" method="GET" autocomplete="off">
+      <div class="card-body">
 
-        <div class="campo">
-          <label for="email">E-mail</label>
-          <div class="input-wrap">
-            <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24"
-                 fill="none" stroke="currentColor" stroke-width="2"
-                 stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="4" width="20" height="16" rx="2"/>
-              <polyline points="2,4 12,13 22,4"/>
-            </svg>
+        <div class="card-mini">
+          <svg class="mini-svg" viewBox="0 0 110 124" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M55 5 L103 22 L103 63 C103 88 82 107 55 119 C28 107 7 88 7 63 L7 22 Z"
+                  stroke="#1351B4" stroke-width="5"
+                  fill="rgba(19,81,180,0.06)" stroke-linejoin="round"/>
+            <circle cx="55" cy="66" r="26" stroke="#1351B4" stroke-width="4" fill="none"/>
+            <text x="55" y="75" text-anchor="middle"
+                  font-family="Segoe UI, Arial, sans-serif"
+                  font-weight="900" font-size="22"
+                  fill="#1351B4" letter-spacing="1">SN</text>
+          </svg>
+          <div class="mini-txt">
+            <div class="mn">SPYNET</div>
+            <div class="mp">PANIFICAPRO 360</div>
+          </div>
+        </div>
+
+        <div class="c-eyebrow">Acesso ao sistema</div>
+        <div class="c-titulo">Bem-vindo</div>
+        <div class="c-sub">Acesse sua conta para continuar</div>
+
+        <form action="/dashboard" method="GET" autocomplete="off">
+
+          <div class="campo">
+            <label for="email">E-mail</label>
             <input type="email" id="email" name="email"
                    placeholder="seu@email.com" required>
           </div>
-        </div>
 
-        <div class="campo">
-          <label for="senha">Senha</label>
-          <div class="input-wrap">
-            <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24"
-                 fill="none" stroke="currentColor" stroke-width="2"
-                 stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="11" width="18" height="11" rx="2"/>
-              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-            </svg>
+          <div class="campo">
+            <label for="senha">Senha</label>
             <input type="password" id="senha" name="senha"
                    placeholder="••••••••" required>
           </div>
-        </div>
 
-        <div class="row-opcoes">
-          <label class="lembrar">
-            <input type="checkbox" name="lembrar"> Lembrar acesso
-          </label>
-          <a href="#" class="esqueci">Esqueci a senha</a>
-        </div>
+          <div class="row-extra">
+            <label class="lembrar">
+              <input type="checkbox" name="lembrar">
+              Lembrar acesso
+            </label>
+            <a href="#" class="link-esqueci">Esqueci a senha</a>
+          </div>
 
-        <button type="submit" class="btn">Entrar no Sistema</button>
+          <button type="submit" class="btn">✦ &nbsp;Entrar no Sistema</button>
 
-      </form>
+        </form>
 
-      <div class="versao">PANIFICA PRO 360 &nbsp;·&nbsp; Versão 1.0</div>
+        <div class="versao">PANIFICAPRO 360 &nbsp;·&nbsp; Versão 1.0</div>
 
+      </div>
     </div>
   </div>
 
 </div>
-
 </body>
 </html>
