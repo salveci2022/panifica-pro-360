@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Relatórios - PANIFICA PRO 360</title>
+
+<style>
+
+body{
+    background:#eef2f7;
+    font-family:Arial,Helvetica,sans-serif;
+    margin:0;
+    padding:30px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    margin-bottom:20px;
+}
+
+h1{
+    color:#1351B4;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    text-align:left;
+}
+
+th{
+    background:#f5f7fa;
+}
+
+.botao{
+    background:#1351B4;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.botao:hover{
+    background:#0d47a1;
+}
+
+</style>
+
+</head>
+<body>
+
+<h1>📊 Relatórios Gerenciais</h1>
+
+<div class="card">
+
+<h3>Resumo Financeiro</h3>
+
+<table>
+
+<tr>
+<th>Mês</th>
+<th>Receita</th>
+<th>Despesa</th>
+<th>Lucro</th>
+</tr>
+
+<tr>
+<td>Junho/2026</td>
+<td>R$ {{ "%.2f"|format(receita_total + vendas_total) }}</td>
+<td>R$ {{ "%.2f"|format(despesa_total) }}</td>
+<td>R$ {{ "%.2f"|format(lucro_total) }}</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="card">
+
+<h3>📄 Exportação</h3>
+
+<p>Relatório financeiro consolidado.</p>
+
+<a href="/relatorio-pdf" class="botao" style="text-decoration:none;">
+📄 Gerar PDF
+</a>
+
+</div>
+
+</body>
+</html>

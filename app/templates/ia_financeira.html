@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>IA Financeira - PANIFICA PRO 360</title>
+
+<style>
+
+body{
+    background:#eef2f7;
+    font-family:Arial,Helvetica,sans-serif;
+    margin:0;
+    padding:30px;
+}
+
+h1{
+    color:#1351B4;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    margin-bottom:20px;
+}
+
+.sucesso{
+    background:#d4edda;
+    border-left:5px solid #28a745;
+}
+
+.alerta{
+    background:#fff3cd;
+    border-left:5px solid #ffc107;
+}
+
+.perigo{
+    background:#f8d7da;
+    border-left:5px solid #dc3545;
+}
+
+.valor{
+    font-size:32px;
+    font-weight:bold;
+    color:#1351B4;
+}
+
+</style>
+
+</head>
+<body>
+
+<h1>IA Financeira PANIFICA PRO 360</h1>
+
+<div class="card sucesso">
+    <h3>Total de Vendas</h3>
+    <div class="valor">{{ total_vendas }}</div>
+</div>
+
+<div class="card">
+    <h3>Total de Compras</h3>
+    <div class="valor">{{ total_compras }}</div>
+</div>
+
+<div class="card">
+    <h3>Produtos em Estoque</h3>
+    <div class="valor">{{ produtos_estoque }}</div>
+</div>
+
+<div class="card alerta">
+    <h3>Produtos Críticos</h3>
+    <div class="valor">{{ produtos_criticos }}</div>
+    <p>Produtos abaixo do estoque mínimo.</p>
+</div>
+
+<div class="card perigo">
+    <h3>Recomendações Automáticas</h3>
+
+    <ul>
+        <li>Monitorar produtos abaixo do estoque mínimo.</li>
+        <li>Acompanhar a evolução das vendas.</li>
+        <li>Controlar compras para evitar excesso de estoque.</li>
+        <li>Planejar a produção conforme a demanda.</li>
+    </ul>
+
+</div>
+
+<a href="/dashboard">
+    <button style="padding:10px 20px;background:#1351B4;color:white;border:none;border-radius:8px;">
+        Voltar ao Dashboard
+    </button>
+</a>
+
+</body>
+</html>
