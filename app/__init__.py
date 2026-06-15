@@ -5,6 +5,8 @@ from datetime import datetime
 
 from reportlab.pdfgen import canvas
 import os
+from werkzeug.security import check_password_hash
+from app.models.usuario import Usuario
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -33,8 +35,31 @@ def create_app():
     with app.app_context():
         db.create_all()
 
-    @app.route("/")
+    @app.route("/", methods=["GET", "POST"])
     def home():
+
+        if request.method == "POST":
+
+            email = request.form.get("email")
+            senha = request.form.get("senha")
+
+            usuario = Usuario.query.filter_by(
+                email=email
+            ).first()
+
+            if usuario:
+
+                if check_password_hash(
+                    usuario.senha,
+                    senha
+                ):
+                    return redirect("/dashboard")
+
+            return render_template(
+                "login.html",
+                erro="Usuário ou senha inválidos"
+            )
+
         return render_template("login.html")
 
     @app.route("/dashboard")
