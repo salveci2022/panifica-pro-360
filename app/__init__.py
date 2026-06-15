@@ -598,4 +598,8 @@ def create_app():
             produtos_criticos=produtos_criticos
         )
 
+    @app.route("/logout")
+    def logout():
+        return redirect("/")
+
     return app

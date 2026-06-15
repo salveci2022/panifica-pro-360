@@ -52,6 +52,15 @@ border-radius:8px;
 .sidebar a:hover{
 background:rgba(255,255,255,.15);
 }
+.sidebar li.sair a{
+margin-top:10px;
+border-top:1px solid rgba(255,255,255,.15);
+padding-top:18px;
+color:#fca5a5;
+}
+.sidebar li.sair a:hover{
+background:rgba(220,38,38,.2);
+}
 .main{
 flex:1;
 padding:40px;
@@ -120,6 +129,7 @@ Plataforma Inteligente de Gestão para Padarias
 <li><a href="/movimentos">Movimentos</a></li>
 <li><a href="/relatorios">Relatórios</a></li>
 <li><a href="/ia-financeira">IA Financeira</a></li>
+<li class="sair"><a href="/logout">🚪 Sair</a></li>
 </ul>
 </div>
 <div class="main">
@@ -127,63 +137,54 @@ Plataforma Inteligente de Gestão para Padarias
 📊 Dashboard Executivo PANIFICA PRO 360
 </div>
 <div class="cards">
-
 <div class="card">
 <h3>💰 Receita</h3>
 <div class="valor receita">
 R$ {{ "%.2f"|format(receita_total) }}
 </div>
 </div>
-
 <div class="card">
 <h3>💸 Despesas</h3>
 <div class="valor despesa">
 R$ {{ "%.2f"|format(despesa_total) }}
 </div>
 </div>
-
 <div class="card">
 <h3>📈 Lucro</h3>
 <div class="valor lucro">
 R$ {{ "%.2f"|format(lucro_total) }}
 </div>
 </div>
-
 <div class="card">
 <h3>🏦 Fluxo de Caixa</h3>
 <div class="valor">
 R$ {{ "%.2f"|format(fluxo_caixa) }}
 </div>
 </div>
-
 <div class="card">
 <h3>🛒 Compras</h3>
 <div class="valor">
 {{ total_compras }}
 </div>
 </div>
-
 <div class="card">
 <h3>💵 Vendas</h3>
 <div class="valor">
 {{ total_vendas }}
 </div>
 </div>
-
 <div class="card">
 <h3>📦 Estoque</h3>
 <div class="valor">
 {{ estoque_itens }}
 </div>
 </div>
-
 <div class="card">
 <h3>📄 Boletos</h3>
 <div class="valor">
 {{ boletos }}
 </div>
 </div>
-
 </div>
 <div class="ia">
 <h2>🤖 IA PANIFICA PRO 360 - Inteligência de Gestão</h2>
