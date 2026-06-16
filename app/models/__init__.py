@@ -8,3 +8,4 @@ from .producao import Producao
 from .receita_producao import ReceitaProducao
 from .movimento_estoque import MovimentoEstoque
 from .venda import Venda
+from .usuario import Usuario
