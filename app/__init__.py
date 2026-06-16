@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, send_file
+from flask import Flask, render_template, request, redirect, send_file, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from datetime import datetime
@@ -53,6 +53,10 @@ def create_app():
                     usuario.senha,
                     senha
                 ):
+
+                    session["usuario"] = usuario.nome
+                    session["email"] = usuario.email
+
                     return redirect("/dashboard")
 
             return render_template(
@@ -64,6 +68,9 @@ def create_app():
 
     @app.route("/dashboard")
     def dashboard():
+
+        if "usuario" not in session:
+            return redirect("/")
 
         receita_total = db.session.query(
             db.func.sum(Receita.valor)
@@ -597,5 +604,12 @@ def create_app():
             produtos_estoque=produtos_estoque,
             produtos_criticos=produtos_criticos
         )
+
+    @app.route("/logout")
+    def logout():
+
+        session.clear()
+
+        return redirect("/")
 
     return app
