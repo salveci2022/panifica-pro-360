@@ -49,27 +49,18 @@ html, body {
   align-items: center; width: 100%;
 }
 
-.logo-escudo {
-  width: 100px; height: 100px; margin-bottom: 14px;
-  filter: drop-shadow(0 0 16px rgba(96,195,248,.45));
+/* ══ LOGO IMG ══ */
+.logo-img {
+  max-width: 220px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 28px;
+  filter: drop-shadow(0 0 18px rgba(96,195,248,.40));
   transition: filter .3s, transform .3s;
 }
-.logo-escudo:hover {
-  filter: drop-shadow(0 0 28px rgba(96,195,248,.7));
-  transform: scale(1.05);
-}
-
-.logo-spynet {
-  font-size: 36px; font-weight: 900; letter-spacing: 5px; line-height: 1;
-  background: linear-gradient(90deg, #60a5fa 0%, #06b6d4 45%, #f97316 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text; margin-bottom: 5px;
-}
-
-.logo-seg {
-  font-size: 10px; letter-spacing: 4px;
-  color: rgba(255,255,255,.38); text-transform: uppercase;
-  font-weight: 500; margin-bottom: 24px;
+.logo-img:hover {
+  filter: drop-shadow(0 0 30px rgba(96,195,248,.65));
+  transform: scale(1.04);
 }
 
 .sep {
@@ -85,15 +76,15 @@ html, body {
 }
 
 .produto-nome {
-  font-size: 62px; font-weight: 900;
+  font-size: 56px; font-weight: 900;
   line-height: .92; letter-spacing: -2px; color: #fff;
-  margin-bottom: 12px; white-space: nowrap;
+  margin-bottom: 10px; white-space: nowrap;
   text-shadow: 0 4px 32px rgba(0,0,0,.25);
 }
-.produto-nome .pro { color: #5bbcf8; -webkit-text-fill-color: #5bbcf8; }
+.produto-nome .pro { color: #5bbcf8; }
 
 .produto-slogan {
-  font-size: 13px; color: rgba(255,255,255,.48);
+  font-size: 13px; color: rgba(255,255,255,.55);
   line-height: 1.6; margin-bottom: 28px;
   max-width: 380px; font-style: italic;
 }
@@ -231,19 +222,44 @@ html, body {
   font-size: 10.5px; color: #b0bec5; letter-spacing: .4px;
 }
 
+/* ══ RESPONSIVO ══ */
 @media (max-width: 860px) {
   html, body { overflow: auto; }
-  .tela { flex-direction: column; height: auto; }
-  .esquerdo { width: 100%; padding: 44px 24px 52px; }
-  .produto-nome { font-size: 40px; letter-spacing: -1px; }
-  .beneficios { grid-template-columns: 1fr; gap: 8px; }
-  .direito { width: 100%; padding: 28px 20px 48px; }
+  .tela { flex-direction: column; height: auto; min-height: 100vh; }
+
+  .esquerdo {
+    width: 100%;
+    padding: 44px 24px 48px;
+    justify-content: center;
+  }
+
+  .logo-img { max-width: 180px; margin-bottom: 20px; }
+
+  .produto-nome { font-size: 36px; letter-spacing: -1px; white-space: normal; }
+
+  .beneficios {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    max-width: 100%;
+  }
+
+  .direito {
+    width: 100%;
+    padding: 28px 20px 48px;
+  }
+
+  .card { max-width: 100%; }
   .card-body { padding: 28px 28px 32px; }
 }
+
 @media (max-width: 480px) {
-  .logo-spynet { font-size: 28px; }
-  .produto-nome { font-size: 30px; }
-  .logo-escudo { width: 76px; height: 76px; }
+  .logo-img { max-width: 140px; }
+  .produto-nome { font-size: 28px; }
+  .produto-slogan { font-size: 12px; }
+  .beneficios { grid-template-columns: 1fr; gap: 7px; }
+  .beneficio { font-size: 12px; }
+  .card-body { padding: 22px 20px 28px; }
+  .c-titulo { font-size: 21px; }
 }
 </style>
 </head>
@@ -258,39 +274,19 @@ html, body {
 
     <div class="esq-inner">
 
-      <svg class="logo-escudo" viewBox="0 0 110 124" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="gs" x1="0" y1="0" x2="110" y2="124" gradientUnits="userSpaceOnUse">
-            <stop offset="0%"   stop-color="#38bdf8"/>
-            <stop offset="38%"  stop-color="#3b82f6"/>
-            <stop offset="78%"  stop-color="#f97316"/>
-            <stop offset="100%" stop-color="#ea580c"/>
-          </linearGradient>
-          <linearGradient id="gsn" x1="0" y1="0" x2="110" y2="124" gradientUnits="userSpaceOnUse">
-            <stop offset="0%"   stop-color="#93c5fd"/>
-            <stop offset="50%"  stop-color="#60a5fa"/>
-            <stop offset="100%" stop-color="#fb923c"/>
-          </linearGradient>
-        </defs>
-        <path d="M55 5 L103 22 L103 63 C103 88 82 107 55 119 C28 107 7 88 7 63 L7 22 Z"
-              stroke="url(#gs)" stroke-width="3.5"
-              fill="rgba(255,255,255,0.06)" stroke-linejoin="round"/>
-        <circle cx="55" cy="66" r="26" stroke="url(#gs)" stroke-width="3" fill="none"/>
-        <text x="55" y="75" text-anchor="middle"
-              font-family="Segoe UI, Arial, sans-serif"
-              font-weight="900" font-size="22"
-              fill="url(#gsn)" letter-spacing="1">SN</text>
-      </svg>
-
-      <div class="logo-spynet">SPYNET</div>
-      <div class="logo-seg">Segurança Inteligente</div>
+      <!-- LOGO PNG -->
+      <img
+        src="{{ url_for('static', filename='img/logo_spynet.png') }}"
+        alt="SPYNET"
+        class="logo-img"
+      >
 
       <div class="sep"></div>
 
       <div class="produto-tag">Plataforma SaaS &nbsp;·&nbsp; Versão 1.0</div>
       <div class="produto-nome">PANIFICA<span class="pro">PRO</span> 360</div>
       <div class="produto-slogan">
-        "Transformando a gestão de padarias através<br>da tecnologia e inteligência financeira."
+        Plataforma Inteligente de Gestão para Padarias
       </div>
 
       <div class="beneficios">
