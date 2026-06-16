@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PANIFICA PRO 360</title>
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html, body {
+  height: 100%;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #f0f4f9;
+  overflow: hidden;
+}
+
+.tela { display: flex; height: 100vh; }
+
+/* ══ ESQUERDO ══ */
+.esquerdo {
+  width: 54%;
+  background: linear-gradient(168deg, #061e52 0%, #0f3d9e 45%, #1351B4 75%, #1a6ad4 100%);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 40px 52px 32px;
+  position: relative; overflow: hidden;
+  color: #fff; text-align: center;
+}
+
+.esquerdo .c1 {
+  position: absolute; top: -160px; right: -160px;
+  width: 420px; height: 420px; border-radius: 50%;
+  background: rgba(255,255,255,.04); pointer-events: none;
+}
+.esquerdo .c2 {
+  position: absolute; bottom: -100px; left: -80px;
+  width: 320px; height: 320px; border-radius: 50%;
+  background: rgba(255,255,255,.03); pointer-events: none;
+}
+.grid-dots {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px);
+  background-size: 26px 26px; pointer-events: none;
+}
+
+.esq-inner {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column;
+  align-items: center; width: 100%;
+}
+
+/* ══ LOGO IMG ══ */
+.logo-principal {
+  max-width: 250px;
+  width: 100%;
+  height: auto;
+  border-radius: 25px;
+  background: white;
+  padding: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  transition: all .3s ease;
+  margin-bottom: 20px;
+}
+.logo-principal:hover { transform: scale(1.03); }
+
+.badge-saas {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 50px;
+  padding: 6px 16px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,.80);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  backdrop-filter: blur(6px);
+}
+.badge-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #22d3ee;
+  box-shadow: 0 0 6px #22d3ee;
+  animation: pulse-dot 1.8s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: .5; transform: scale(1.4); }
+}
+
+.sep {
+  width: 52px; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.25), transparent);
+  border-radius: 2px; margin: 0 auto 22px;
+}
+
+.produto-tag {
+  font-size: 9px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: rgba(255,255,255,.32);
+  margin-bottom: 8px;
+}
+
+.produto-nome {
+  font-size: 56px; font-weight: 900;
+  line-height: .92; letter-spacing: -2px; color: #fff;
+  margin-bottom: 10px; white-space: nowrap;
+  text-shadow: 0 4px 32px rgba(0,0,0,.25);
+}
+.produto-nome .pro { color: #5bbcf8; }
+
+.produto-slogan {
+  font-size: 13px; color: rgba(255,255,255,.55);
+  line-height: 1.6; margin-bottom: 28px;
+  max-width: 380px; font-style: italic;
+}
+
+.beneficios {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 9px 24px; width: 100%; max-width: 400px;
+  text-align: left;
+}
+
+.beneficio {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 600;
+  color: rgba(255,255,255,.75);
+  padding: 7px 10px; border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.06);
+  background: rgba(255,255,255,.04);
+  transition: background .2s, color .2s, border-color .2s;
+}
+.beneficio:hover {
+  background: rgba(255,255,255,.09);
+  color: #fff; border-color: rgba(255,255,255,.15);
+}
+.b-icon { font-size: 14px; flex-shrink: 0; }
+
+.esq-footer {
+  position: absolute; bottom: 18px;
+  font-size: 10px; color: rgba(255,255,255,.18); z-index: 2;
+}
+
+/* ══ DIREITO ══ */
+.direito {
+  width: 46%; background: #eef2f8;
+  display: flex; align-items: center;
+  justify-content: center; padding: 36px 44px;
+}
+
+.card {
+  width: 100%; max-width: 400px;
+  background: #fff; border-radius: 22px;
+  border: 1px solid #dce4ef; overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05), 0 20px 56px rgba(19,81,180,.10);
+}
+
+.card-stripe {
+  width: 100%; height: 4px;
+  background: linear-gradient(90deg, #1351B4 0%, #06b6d4 50%, #f97316 100%);
+}
+
+.card-body { padding: 32px 38px 36px; }
+
+.card-mini {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 22px; padding-bottom: 18px;
+  border-bottom: 1px solid #eef2f7;
+}
+.mini-svg { width: 30px; height: 30px; }
+.mini-txt .mn { font-size: 12px; font-weight: 800; letter-spacing: 2px; color: #1351B4; }
+.mini-txt .mp { font-size: 10px; color: #94a3b8; letter-spacing: .5px; }
+
+.c-eyebrow {
+  font-size: 10px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: #1351B4; margin-bottom: 5px;
+}
+.c-titulo { font-size: 25px; font-weight: 800; color: #0f172a; margin-bottom: 3px; }
+.c-sub { font-size: 13px; color: #64748b; margin-bottom: 26px; }
+
+.campo { margin-bottom: 15px; }
+.campo label {
+  display: block; font-size: 11px; font-weight: 700;
+  letter-spacing: .4px; color: #334155;
+  margin-bottom: 6px; text-transform: uppercase;
+}
+.campo input {
+  width: 100%; padding: 12px 14px;
+  font-size: 14.5px; color: #0f172a;
+  background: #f8fafc; border: 1.5px solid #dce4ef;
+  border-radius: 11px; outline: none;
+  transition: border-color .18s, box-shadow .18s, background .18s;
+}
+.campo input::placeholder { color: #b0bec5; }
+.campo input:focus {
+  border-color: #1351B4; background: #fff;
+  box-shadow: 0 0 0 3px rgba(19,81,180,.09);
+}
+
+.row-extra {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px; margin-top: 4px;
+}
+.lembrar {
+  display: flex; align-items: center;
+  gap: 7px; font-size: 12.5px; color: #64748b; cursor: pointer;
+}
+.lembrar input { accent-color: #1351B4; }
+.link-esqueci {
+  font-size: 12.5px; font-weight: 700;
+  color: #1351B4; text-decoration: none;
+}
+.link-esqueci:hover { text-decoration: underline; }
+
+.btn {
+  width: 100%; padding: 15px;
+  background: linear-gradient(135deg, #0d3080 0%, #1351B4 40%, #1a6ad4 70%, #0ea5e9 100%);
+  color: #fff; border: none; border-radius: 12px;
+  font-size: 14px; font-weight: 800;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  cursor: pointer; position: relative; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(19,81,180,.35),
+              inset 0 1px 0 rgba(255,255,255,.15);
+  transition: transform .2s, box-shadow .2s, filter .2s;
+}
+.btn::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+.btn::after {
+  content: ''; position: absolute; top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+  transition: left .5s ease;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(19,81,180,.45), inset 0 1px 0 rgba(255,255,255,.15);
+  filter: brightness(1.08);
+}
+.btn:hover::after { left: 140%; }
+.btn:active { transform: scale(.98); }
+
+.versao {
+  margin-top: 18px; text-align: center;
+  font-size: 10.5px; color: #b0bec5; letter-spacing: .4px;
+}
+
+/* ══ RESPONSIVO ══ */
+@media (max-width: 860px) {
+  html, body { overflow: auto; }
+  .tela { flex-direction: column; height: auto; min-height: 100vh; }
+
+  .esquerdo {
+    width: 100%;
+    padding: 44px 24px 48px;
+    justify-content: center;
+  }
+
+  .logo-principal { max-width: 180px; margin-bottom: 16px; }
+
+  .produto-nome { font-size: 36px; letter-spacing: -1px; white-space: normal; }
+
+  .beneficios {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    max-width: 100%;
+  }
+
+  .direito {
+    width: 100%;
+    padding: 28px 20px 48px;
+  }
+
+  .card { max-width: 100%; }
+  .card-body { padding: 28px 28px 32px; }
+}
+
+@media (max-width: 480px) {
+  .logo-principal { max-width: 140px; }
+  .produto-nome { font-size: 28px; }
+  .produto-slogan { font-size: 12px; }
+  .beneficios { grid-template-columns: 1fr; gap: 7px; }
+  .beneficio { font-size: 12px; }
+  .card-body { padding: 22px 20px 28px; }
+  .c-titulo { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<div class="tela">
+
+  <!-- ESQUERDO -->
+  <div class="esquerdo">
+    <div class="c1"></div>
+    <div class="c2"></div>
+    <div class="grid-dots"></div>
+
+    <div class="esq-inner">
+
+      <!-- LOGO PNG -->
+      <img
+        src="{{ url_for('static', filename='img/logo_spynet.png') }}"
+        alt="SPYNET"
+        class="logo-principal"
+      >
+
+      <div class="badge-saas">
+        <span class="badge-dot"></span>
+        Plataforma SaaS · Versão 1.0
+      </div>
+
+      <div class="sep"></div>
+
+      <div class="produto-nome">PANIFICA<span class="pro">PRO</span> 360</div>
+      <div class="produto-slogan">
+        Plataforma Inteligente de Gestão para Padarias
+      </div>
+
+      <div class="beneficios">
+        <div class="beneficio"><span class="b-icon">💰</span>Controle Financeiro</div>
+        <div class="beneficio"><span class="b-icon">📦</span>Gestão de Estoque</div>
+        <div class="beneficio"><span class="b-icon">🏭</span>Produção Automatizada</div>
+        <div class="beneficio"><span class="b-icon">🛒</span>Controle de Vendas</div>
+        <div class="beneficio"><span class="b-icon">📊</span>Relatórios Gerenciais</div>
+        <div class="beneficio"><span class="b-icon">🤖</span>IA Financeira</div>
+      </div>
+
+    </div>
+
+    <div class="esq-footer">
+      Desenvolvido por SPYNET Segurança Inteligente &copy; 2026
+    </div>
+  </div>
+
+  <!-- DIREITO -->
+  <div class="direito">
+    <div class="card">
+
+      <div class="card-stripe"></div>
+
+      <div class="card-body">
+
+        <div class="card-mini">
+          <svg class="mini-svg" viewBox="0 0 110 124" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M55 5 L103 22 L103 63 C103 88 82 107 55 119 C28 107 7 88 7 63 L7 22 Z"
+                  stroke="#1351B4" stroke-width="5"
+                  fill="rgba(19,81,180,0.06)" stroke-linejoin="round"/>
+            <circle cx="55" cy="66" r="26" stroke="#1351B4" stroke-width="4" fill="none"/>
+            <text x="55" y="75" text-anchor="middle"
+                  font-family="Segoe UI, Arial, sans-serif"
+                  font-weight="900" font-size="22"
+                  fill="#1351B4" letter-spacing="1">SN</text>
+          </svg>
+          <div class="mini-txt">
+            <div class="mn">SPYNET</div>
+            <div class="mp">PANIFICAPRO 360</div>
+          </div>
+        </div>
+
+        <div class="c-eyebrow">Acesso ao sistema</div>
+        <div class="c-titulo">Bem-vindo</div>
+        <div class="c-sub">Acesse sua conta para continuar</div>
+
+        {% if erro %}
+        <p style="color:#dc2626;font-size:13px;margin-bottom:12px;background:#fef2f2;padding:10px 14px;border-radius:8px;border:1px solid #fecaca;">
+          {{ erro }}
+        </p>
+        {% endif %}
+
+        <form action="/" method="POST" autocomplete="off">
+
+          <div class="campo">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email"
+                   placeholder="seu@email.com" required>
+          </div>
+
+          <div class="campo">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha"
+                   placeholder="••••••••" required>
+          </div>
+
+          <div class="row-extra">
+            <label class="lembrar">
+              <input type="checkbox" name="lembrar">
+              Lembrar acesso
+            </label>
+            <a href="#" class="link-esqueci">Esqueci a senha</a>
+          </div>
+
+          <button type="submit" class="btn">✦ &nbsp;Entrar no Sistema</button>
+
+        </form>
+
+        <div class="versao">PANIFICAPRO 360 &nbsp;·&nbsp; Versão 1.0</div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
